@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Smart Footwear Monitor</title>
+</head>
+
+<body>
+
+<h2>Smart Footwear Monitoring Dashboard</h2>
+
+Temperature : <span id="temp"></span> °C <br><br>
+Pressure : <span id="pressure"></span> kPa <br><br>
+Steps : <span id="steps"></span> <br><br>
+Glucose : <span id="glucose"></span> mg/dL <br><br>
+
+<script>
+
+async function fetchData(){
+
+let res = await fetch("http://127.0.0.1:5000/api/latestdata")
+
+let data = await res.json()
+
+document.getElementById("temp").innerText = data.temperature
+document.getElementById("pressure").innerText = data.pressure
+document.getElementById("steps").innerText = data.steps
+document.getElementById("glucose").innerText = data.glucose
+
+}
+
+setInterval(fetchData,2000)
+
+</script>
+
+</body>
+
+</html>
